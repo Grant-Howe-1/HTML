@@ -1,0 +1,394 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <title>His Lordship</title>
+        <link rel="icon", href="images/Corg_icon.jpg">  <!-- The <link> element is a self closing tag and will always be found in the head of an HTML document.-->
+        <link rel="stylesheet" href="css/css1"> <!--This is using EXTERNAL CSS- one of the most popular methods of using style-sheets.   -->
+        <link rel="preconnect" href="https://fonts.googleapis.com"> <!--These 3 links- grabbed from google fonts API-->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <!-- UTF stands for Unicode Transformation Format. It is a charachter encoding that tells the broswer how to turn the bytes in your HTML file into actual charachters.]
+         it uis a character encoding. UTF-8 supports every language and symbol on earth, from english to chinese to arabic to emojis. it is the modern web-standard-->
+
+        <meta name="description" content = "Self study of HTML and CSS for Grant to be more versatile in his job">
+        <meta name="keywords" content= "HTML, CSS, Study, Grant">
+        <meta name="author" content = "Grant Howe">
+        <meta name = "viewport" content =  "width = device-width, initial scale = 1.0"> <!-- this allows for different doc visibility on different devices! e.g. mobile, laptop, even a smart-fridge if a user REALLY wants that...-->
+        <meta http-equiv= "refresh" content="30"> <!-- http-eqiv tells the web page to do something. It is also a specific name example- content = "30" means the page will refresh every 30 seconds.-->
+<!-- Meta tags are self-closing and hold meta-data about the document. Thus they are always to be held in the <head> </head> section. 
+ Generally speaking,  you can make the name whatever you want- meta tags are often written in code for devs to understand the context behind your doc .
+ SOME meta names however are specific, as they are designed to do specific things. description, viewport, aythor... these are examples of names that are case specific -->
+        <style>
+            .par {
+                font-size: 20px; 
+                color: blue;
+            }
+        </style>
+<!--The above is INTERNAL CSS, where the style sheet is only applied to entities within this HTML doc with the class 'par'.-->
+        <style>
+            .bordered{
+                border-bottom:3px solid hsla(0, 98%, 52%, 0.918);
+                border-top:3px solid hsla(241, 60%, 45%, 0.418);
+                border-left: 3px solid hsla(54, 92%, 43%, 0.918);
+                border-right: 3px dotted hsla(138, 71%, 55%, 0.918);
+                border-radius: 25px;
+            }
+        </style>
+
+        <style>
+            .shadow{
+                text-shadow: 3px 3px 5px hsl(0, 100%, 61%),  -3px -3px 5px hsl(145, 94%, 49%);
+                color:blue;
+                font-family: Roboto;
+            }
+        </style>
+
+        <!--margin refers to the space outside of an element- in the body. -->
+        <style>
+           .box{
+            border: 5px solid;
+            font-size: 5em;
+            width: 250px;
+            height: 250px;
+            margin: 50px;
+                } 
+           #box1{
+            background-color: hsl(0, 100%, 60%);
+           }
+           #box2{
+            background-color: hsl(189, 100%, 55%);
+           }
+        </style>
+        <style>
+            #pythonimage{
+                width:50px;
+                height:50px;
+                float:left;
+            }
+        </style>
+        <style>
+            .div_{
+                border: 2px solid;
+                height: 75px;
+            }
+            #div1{
+                overflow: visible
+            }
+            #div2{
+                overflow: hidden
+            }
+            #div3{
+                overflow: clip;
+                overflow-clip-margin: 13px;
+            }
+            #div4{
+                overflow: scroll
+            }
+            #div5{
+                overflow: auto
+            }
+
+        </style>
+ <!--ABOVE: DIFFERENT HANDLING OF OVERFLOWS- visible: displays overflowing elements. Hidden: truncates overflowed part of element. clip- controls HOW MANY PIXELS you allow to 
+    overflow. Scroll: Allows you to see all overflowing element in the same box with a scroll-cursor. Auto: The same as Scroll, but the cursor is ONLY displayed if content actually overflows.-->
+        <style>
+            #span1{
+                background-color: red;
+                display: inline;
+
+            }
+        </style>
+   <!--in-line content can be changed to block and vice versa. Alternatively there is inline-block.
+   visibility= hidden means the content is there but it is invisible.]
+   You cannot apply height and width to anything inline but you can for inline-block and block.
+   block elements take up the pages entire width.-->
+    </head>
+    <body style= "background-color:grey;">
+        <p><b>Hello</b></p>
+        <hr style="border: 2px solid blue;">
+        <p style="border:2px dashed rgb(111, 71, 255)">This is a dashed border</p>
+        <p style="border: 3px dotted rgba(27, 211, 88, 0.7)">This is a dotted border</p>
+
+        <div style="border:3px solid rgb(0, 0, 0); padding: 0px;">
+  <h2>About Me</h2>
+  <p>I'm learning HTML -and CSS!</p>
+
+
+</div>
+<br>
+<br>
+<div style="border:3px solid rgb(0, 0, 0);margin: 50px auto;background-color: lightgray;  padding: 10px; height:400px; width:300px; display:flex; flex-direction: column; justify-content: center;justify-content: space-around; ">
+    <h2 style="position:relative; left:90px; color:white;"><mark style= "background-color: skyblue; color:white;";><ins>Epic Tune</ins></mark></h2>
+    <h3 style="position:relative; left:90px; color:rgb(173, 7, 173);">A song by Grant</h3>
+    <div style="border:3px solid rgb(0, 0, 0);background-color: white;">
+    <img src="Mood Yes GIF by echilibrultau.gif" alt="Cover Image Smiley" style="height: 200px; width:296px; position:relative;"> <!--position:relative is a must so there is a reference point for moving the image.-->
+    </div>
+<audio controls autoplay muted loop>
+    <source src="12_00 AM - Ramzoid.mp3">
+    <p>Your browser does not support the audio element. <a href="song.mp3">Download the song</a> instead.</p>
+    <!--The above line of text is only used as a fallback in-case it can't be accessed!-->
+</audio>
+</div>
+
+<!--  Alternatively I could have done <audio controls src="12_00 AM - Ramzoid.mp3"></audio>
+and this is totally valid! However it is often good practice to specifiy numerous sources in case one or more
+can't be found. This is done by adding multiple <source> tags-->
+<br><br><br>
+
+
+<b style="background-color:green; width:20px; height:20px; float:left; margin-right:5px;"></b>
+<b style="background:rgb(153, 33, 184); width:20px; height:20px; float:left; margin-right:5px;"></b>
+changed
+
+<a href="https://en.wikipedia.org/wiki/Welsh_Corgi" target="_blank">
+<div style="border:3px solid rgb(0, 0, 0);background-color: lightgray;  padding: 20px; height:350px; width:300px; display:flex; flex-direction: column; justify-content: center;justify-content: space-between; ">
+    <h2 style="position:relative; left:50px">His Lorship Status</h2>
+    <div style="border:3px solid rgb(0, 0, 0);background-color: white;">
+    <img src="images/corgi.jpg" alt="Cornelius" style="height: 200px; width:200px; position:relative; left:50px"> <!--position:relative is a must so there is a reference point for moving the image.-->
+    </div>
+</a>
+<audio controls autoplay muted>
+    <source src="ttsMP3.com_VoiceText_2025-10-27_21-12-43.mp3">
+    <p>Your browser does not support the audio element. <a href="song.mp3">Download the song</a> instead.</p>
+    <!--The above line of text is only used as a fallback in-case it can't be accessed!-->
+</audio>
+</div>
+<br>
+<hr style="border: 1px solid black">
+<br><br>
+<div style="position:relative; left:290px; border:2px dashed; height:300px; width:500px;">
+<h3 style="position:relative; left:200px;">List of Places</h3>
+<ul style= "position:relative; left:190px;">
+    <li>New York</li>
+    <ul>
+        <li>Statue of Liberty</li>
+        <li>Times Square</li>
+    </ul>
+    <li>Paris</li>
+    <ul>
+        <li>Eiffel Tower</li>
+        <li>Mona Lisa</li>
+    </ul>
+    <li>London</li>
+    <ul>
+        <li>Big Ben</li>
+    </ul>
+    <li>Rome</li>
+</ul>
+</div>
+<hr style="position:relative; border:2px dashed;">
+<dl style="background-color: aqua; border:2px solid">
+    <dt>dl</dt>
+    <dd>dl stands for descriptive list. It contains descriptive terms with descriptive definitions, as sort-of key:value pairs.</dd>
+    <dt>dt</dt>
+    <dd>dt stands for descriptive term- the name of what is to be defined with a description.</dd>
+    <dt>dd</dt>
+    <dd>dd stands for descriptive definiton.</dd>
+</dl>
+<hr style="border: 1px solid black">
+
+<table border="2" style="background-color: black;">
+    <tr>
+        <th width="100" style="background-color: lightcoral;">Monday</th>
+        <th width="100" style="background-color: lightcoral;">Tuesday</th>
+        <th width="100" style="background-color: lightcoral;">Wednesday</th>
+        <th width="100" style="background-color: lightcoral;">Thursday</th>
+        <th width="100" style="background-color: lightcoral;">Friday</th>
+        <th width="100" style="background-color: lightcoral;">Saturday</th>
+        <th width="100" style="background-color: lightcoral;">Sunday</th>
+    </tr>
+    <tr align="center">
+        <td style="background-color: white;">9-5</td>
+        <td style="background-color: white;">9-5</td>
+        <td style="background-color: white;">9-5</td>
+        <td style="background-color: white;">9-5</td>
+        <td style="background-color: white;">9-5</td>
+        <td style="background-color: white;">None</td>
+        <td style="background-color: white;">None</td>
+    </tr>
+</table>
+<br><br><br><br>
+<a href="https://www.google.com/" target="_blank">
+    <button style= "font-size: 25px; background-color: lightgrey; color:red; border-radius:25px">Click Me</button>
+</a>
+
+<br><br>
+<p id= "greeting" style = "font-size: 100px; position:relative; left:250px">Hello!</p>
+<button onclick="doSomething()" style= "font-size: 25px";>Click me to change the greeting above</button>
+<script>
+    function doSomething(){
+        document.getElementById("greeting").innerHTML = "Goodbye!"
+    }
+</script>
+
+<br><br>
+<form>
+    <label for= "username">Username </label>
+    <input type="text" id="username" placeholder="John Smith" minlength="1" maxlength="15"></input>
+    <br><br>
+    <label for= "password">Password </label>
+    <input type="text" id="password" minlength="1" maxlength="15"></input>
+    <br><br>
+    <label for= "Email">Email: </label>
+    <input type="email" id="Email" placeholder="JohnSmith@outlook.co.uk" minlength="1" maxlength="15"></input>
+    <br><br>
+    <input type="tel" id="Phone" placeholder="7777 000123" minlength="1" maxlength="10"  pattern="\+[0-9]{4}\s[0-9]{6}"></input>
+    <br>
+    <label for ="quantity">Enter Quantity</label>
+    <input type="number" id="quantity" min="0" max="10"></input> 
+    <br>
+    
+    <label for ="title" style="border: 1px solid black; background-color: white;"><b>Title:</b> </label>
+    &nbsp;
+    <label for ="Mr .">Mr.</label>
+    <input type="radio" id="Mr ." value="Mr." name="title">
+    <label for ="Miss. ">Miss.</label>
+    <input type="radio" id="Miss. " value="Miss." name="title">
+    <label for ="Mrs. ">Mrs.</label>
+    <input type="radio" id="Mrs. " value="Mrs." name="title">
+    <label for ="Ms. ">Ms.</label>
+    <input type="radio" id="Ms. " value="Ms." name="title">
+    <label for ="Dr. ">Dr.</label>
+    <input type="radio" id="Dr. " value="Dr." name="title">
+    <hr>
+    <br>
+    <label for ="Title" style="border: 1px solid black; background-color: white;"><b>Title:</b> </label>
+    &nbsp;
+    <label for ="Mr.">Mr.</label>
+    <input type="checkbox" id="Mr." value="Mr." name="Title">
+    <label for ="Miss.">Miss.</label>
+    <input type="checkbox" id="Miss." value="Miss." name="Title">
+    <label for ="Mrs.">Mrs.</label>
+    <input type="checkbox" id="Mrs." value="Mrs." name="Title">
+    <label for ="Ms.">Ms.</label>
+    <input type="checkbox" id="Ms." value="Ms." name="Title">
+    <label for ="Dr.">Dr.</label>
+    <input type="checkbox" id="Dr." value="Dr." name="Title">
+    <hr>
+    <br>
+    <label for="payment">Payment</label>
+    <select id="payment">
+        <option value="visa">visa</option>
+        <option value="mastercard">mastercard</option>
+        <option value="giftcard">giftcard</option>
+    </select><br>
+    <label for="subscribe">Subscribe</label>
+    <input type="checkbox" id="subscribe">
+    <hr>
+    <br>
+    <label for="comments">Enter any feedback you may have</label>
+    <textarea id="comments" rows="3" cols="25"></textarea>
+    <hr>
+    <br>
+    <label for="file">Select a file</label>
+    <input type="file" id="file" accept="image/png, image/jpeg"><br>
+
+
+
+</form>
+
+<br><br><br>
+
+<iframe style="border: 2px solid" src="https://iframetester.com/" width="750" height="750"></iframe>
+<br><br><br>
+<p id="p1">This text is to be made red with external CSS</p>
+<br>
+<br>
+<div></div>
+<div class="bordered" style="padding:10px;">
+<p class="par">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet itaque, cumque cupiditate nostrum dolorem fuga minus eum accusamus dolore! Omnis voluptates et totam. Amet possimus iure, maxime autem veritatis dolore!</p>
+<p class="par">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet itaque, cumque cupiditate nostrum dolorem fuga minus eum accusamus dolore! Omnis voluptates et totam. Amet possimus iure, maxime autem veritatis dolore!</p>
+<p style="font-family: Roboto;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet itaque, cumque cupiditate nostrum dolorem fuga minus eum accusamus dolore! Omnis voluptates et totam. Amet possimus iure, maxime autem veritatis dolore!</p>
+<!--Utilising google fonts API!-->
+</div >
+<h1 class="shadow" style="font-size: 100px;">SHADOW</h1>
+<div class="box" id="box1">
+Box 1
+</div>
+<div class="box" id="box2">
+Box 2
+</div>
+</div>
+<div>
+<img src="python_logo.jpg" alt="python logo" id="pythonimage">
+<p>I am going to wrap some text around these</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis delectus recusandae, et voluptate incidunt quisquam dolores voluptatum maiores accusantium voluptas reprehenderit omnis excepturi assumenda dolor amet, ea, ipsum consequatur hic!</p>
+</div>
+<br><br><hr>
+<p>Fingers crossed this text is not wrapped</p>
+<!-------------------------------------------------------------------------->
+
+
+<div class= "div_" id="div1">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?</p>
+</div><br>
+<div class= "div_" id="div2">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda? </p>
+</div><br>
+<div class= "div_" id="div3">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?</p>
+</div><br>
+<div class= "div_" id="div4">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?</p>
+</div><br>
+<div class= "div_" id="div5">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, perferendis atque asperiores nostrum dicta quia, in voluptas corporis dolor consequatur harum neque enim vero iste! Nihil dolores quod veniam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam velit assumenda doloribus consectetur, quidem similique saepe incidunt optio vitae impedit perferendis distinctio obcaecati? Saepe, error sequi rem hic vitae assumenda?</p>
+</div>
+</div> 
+<br>
+<span id="span1">This is a span element styled as a block element.</span>
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+ 
+  <!-- Outer wrapper -->
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#F4F6F3;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+        <!-- Main container -->
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" class="container" style="width:600px; max-width:600px; background:#FFFFFF; border-radius:16px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <!-- Header -->
+          <tr>
+            <td style="padding:18px 24px; background:#173F34;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="stack" align="left" style="vertical-align:middle;">
+                    <img src="https://github.com/DevHaydon/GC_Repo/blob/main/Portal/groundcontrol_white_rgb.png?raw=true" width="140" height="60" alt="Ground Control" style="display:block; border:0; outline:none;">
+                  </td>
+                  <td class="stack" align="right" style="vertical-align:middle;">
+                    <span style="font-family: Arial, Helvetica, sans-serif; color:#E9F2EE; font-size:14px; letter-spacing:0.4px;">Maintence Data Team</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <p\n                                    
+         
+          <!-- Body copy -->
+          <tr>
+            <td style="padding:0 24px 8px;">
+              </br>
+              <p style="margin:0 0 12px; font-family: Arial, Helvetica, sans-serif; font-size:16px; line-height:24px; color:#2A493E;">
+                Your Full Analysis is below:
+              </p>
+              <p style="margin:12px 0 0; font-family: Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#2A493E;">
+                <strong>Summary:</strong> "@{variables('Description Array')}" <br>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 24px 8px;">
+              <hr style="border:none; border-top:1px solid #CFE3DB; margin:18px 0 24px 0;">
+            </td>
+          </tr>
+ 
+        </table>
+        <!-- /Main container -->
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
