@@ -1,0 +1,712 @@
+<br>
+<br>
+
+<meta>
+<meta>
+<meta>
+<title>Ground Control – Weekly Performance Report</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: #e8ede8;
+font-family: 'DM Sans', sans-serif;
+padding: 0;
+}
+
+/* ── EMAIL CLIENT CHROME ────────────────────────────────── */
+.email-client {
+background: #f0f0f0;
+min-height: 100vh;
+padding: 0;
+}
+
+.client-toolbar {
+background: #2b2b2b;
+color: #ccc;
+padding: 10px 20px;
+font-family: 'DM Mono', monospace;
+font-size: 11px;
+display: flex;
+align-items: center;
+gap: 16px;
+}
+.client-toolbar .dots { display: flex; gap: 6px; }
+.client-toolbar .dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #febc2e; }
+.dot-g { background: #28c840; }
+.client-toolbar .addr-bar {
+background: #3a3a3a;
+border-radius: 4px;
+padding: 4px 12px;
+flex: 1;
+max-width: 400px;
+font-size: 11px;
+color: #aaa;
+}
+
+.email-pane {
+display: flex;
+height: calc(100vh - 36px);
+}
+
+/* sidebar */
+.sidebar {
+width: 220px;
+background: #1e1e1e;
+color: #bbb;
+padding: 16px 0;
+font-size: 12px;
+flex-shrink: 0;
+}
+.sidebar-item {
+padding: 8px 20px;
+cursor: pointer;
+border-left: 3px solid transparent;
+}
+.sidebar-item.active {
+background: #2d3d2d;
+border-left-color: #2d6a4f;
+color: #fff;
+font-weight: 600;
+}
+.sidebar-badge {
+background: #2d6a4f;
+color: #fff;
+border-radius: 10px;
+padding: 1px 7px;
+font-size: 10px;
+float: right;
+}
+.sidebar-section {
+padding: 16px 20px 4px;
+text-transform: uppercase;
+font-size: 10px;
+letter-spacing: 1px;
+color: #555;
+}
+
+/* list pane */
+.list-pane {
+width: 280px;
+background: #fafafa;
+border-right: 1px solid #ddd;
+flex-shrink: 0;
+overflow-y: auto;
+}
+.list-header {
+padding: 14px 16px;
+font-weight: 700;
+font-size: 13px;
+border-bottom: 1px solid #eee;
+color: #222;
+}
+.email-item {
+padding: 12px 16px;
+border-bottom: 1px solid #f0f0f0;
+cursor: pointer;
+font-size: 12px;
+}
+.email-item.selected { background: #e8f0e8; border-left: 3px solid #2d6a4f; }
+.email-item .sender { font-weight: 700; color: #111; margin-bottom: 2px; }
+.email-item .subject { color: #333; margin-bottom: 2px; font-weight: 500; font-size: 11.5px; }
+.email-item .preview { color: #888; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.email-item .time { color: #aaa; font-size: 10px; float: right; }
+.email-item .unread-dot { width: 7px; height: 7px; border-radius: 50%; background: #2d6a4f; display: inline-block; margin-right: 6px; vertical-align: middle; }
+
+/* reading pane */
+.reading-pane {
+flex: 1;
+overflow-y: auto;
+background: #f5f5f5;
+}
+
+/* ── EMAIL ITSELF ───────────────────────────────────────── */
+.email-outer {
+max-width: 680px;
+margin: 20px auto;
+background: #ffffff;
+border-radius: 8px;
+box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+overflow: hidden;
+}
+
+/* meta bar */
+.email-meta {
+background: #fff;
+padding: 18px 28px 14px;
+border-bottom: 1px solid #eee;
+}
+.email-subject-line {
+font-size: 17px;
+font-weight: 700;
+color: #111;
+margin-bottom: 10px;
+}
+.email-from-row {
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 12px;
+color: #555;
+}
+.avatar-ai {
+width: 34px; height: 34px;
+border-radius: 50%;
+background: linear-gradient(135deg, #1b4332, #2d6a4f);
+display: flex; align-items: center; justify-content: center;
+color: #fff; font-weight: 700; font-size: 13px; flex-shrink: 0;
+}
+.from-details strong { color: #222; }
+.from-details .timestamp { color: #aaa; font-size: 11px; }
+.email-actions {
+margin-left: auto;
+display: flex; gap: 8px;
+}
+.action-btn {
+background: #f2f2f2;
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px 12px;
+font-size: 11px;
+color: #555;
+cursor: pointer;
+}
+
+/* header banner */
+.email-banner {
+background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 60%, #40916c 100%);
+padding: 28px 32px 24px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.banner-logo {
+display: flex; align-items: center; gap: 12px;
+}
+.logo-img {
+height: 38px;
+/* We'll render text-based logo since we can't embed the file easily */
+}
+.logo-text {
+color: #fff;
+font-size: 22px;
+font-weight: 800;
+letter-spacing: -0.5px;
+}
+.logo-sub { color: rgba(255,255,255,0.6); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.banner-badge {
+background: rgba(255,255,255,0.15);
+border: 1px solid rgba(255,255,255,0.3);
+border-radius: 20px;
+padding: 6px 14px;
+color: #fff;
+font-size: 11px;
+font-weight: 500;
+display: flex; align-items: center; gap: 6px;
+}
+.pulse { width: 7px; height: 7px; border-radius: 50%; background: #95d5b2; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* body */
+.email-body { padding: 28px 32px; }
+
+.greeting { font-size: 15px; color: #333; margin-bottom: 18px; line-height: 1.6; }
+.greeting strong { color: #1b4332; }
+
+/* week strip */
+.week-strip {
+background: #f8faf8;
+border: 1px solid #e0eae0;
+border-radius: 6px;
+padding: 10px 16px;
+font-size: 11.5px;
+color: #555;
+margin-bottom: 22px;
+display: flex; align-items: center; gap: 8px;
+}
+.week-strip span { font-weight: 600; color: #1b4332; }
+
+/* section header */
+.section-label {
+font-size: 10px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 1.5px;
+color: #888;
+margin-bottom: 12px;
+padding-bottom: 6px;
+border-bottom: 1px solid #eee;
+}
+
+/* KPI GRID */
+.kpi-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+margin-bottom: 22px;
+}
+.kpi-card {
+border: 1px solid #e8e8e8;
+border-radius: 8px;
+padding: 14px 16px;
+background: #fff;
+position: relative;
+overflow: hidden;
+}
+.kpi-card::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+}
+.kpi-card.green::before { background: #2d6a4f; }
+.kpi-card.amber::before { background: #e07000; }
+.kpi-card.red::before { background: #c0392b; }
+
+.kpi-name { font-size: 10.5px; color: #888; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-row { display: flex; gap: 16px; align-items: flex-end; }
+.kpi-block { flex: 1; }
+.kpi-label { font-size: 9.5px; color: #aaa; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; font-family: 'DM Mono', monospace; }
+.kpi-value.good { color: #1b4332; }
+.kpi-value.warn { color: #e07000; }
+.kpi-value.bad { color: #c0392b; }
+.kpi-sla { font-size: 9px; color: #aaa; margin-top: 2px; }
+.kpi-delta {
+font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-bottom: 4px; white-space: nowrap;
+}
+.delta-up { background: #d4edda; color: #1b4332; }
+.delta-down { background: #fde8e8; color: #c0392b; }
+.delta-flat { background: #f0f0f0; color: #777; }
+
+.kpi-bar-wrap { margin-top: 8px; background: #f0f0f0; border-radius: 4px; height: 4px; overflow: hidden; }
+.kpi-bar { height: 100%; border-radius: 4px; }
+.kpi-bar.green { background: #2d6a4f; }
+.kpi-bar.amber { background: #e07000; }
+.kpi-bar.red { background: #c0392b; }
+
+/* highlights */
+.highlights { margin-bottom: 22px; }
+.highlight-item {
+display: flex; gap: 12px; align-items: flex-start;
+background: #fff;
+border: 1px solid #e8e8e8;
+border-radius: 8px;
+padding: 13px 15px;
+margin-bottom: 8px;
+}
+.hi-icon {
+width: 28px; height: 28px; border-radius: 6px;
+display: flex; align-items: center; justify-content: center;
+font-size: 13px; flex-shrink: 0; margin-top: 1px;
+}
+.hi-icon.warn { background: #fff3cd; }
+.hi-icon.crit { background: #fde8e8; }
+.hi-icon.good { background: #d4edda; }
+.hi-title { font-size: 12px; font-weight: 700; color: #222; margin-bottom: 3px; }
+.hi-body { font-size: 11.5px; color: #555; line-height: 1.5; }
+.hi-body strong { color: #1b4332; }
+
+/* actions table */
+.actions-table {
+width: 100%;
+border-collapse: collapse;
+font-size: 12px;
+margin-bottom: 22px;
+}
+.actions-table th {
+background: #1b4332;
+color: #fff;
+padding: 9px 12px;
+text-align: left;
+font-weight: 600;
+font-size: 11px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+.actions-table td {
+padding: 10px 12px;
+border-bottom: 1px solid #f0f0f0;
+vertical-align: top;
+}
+.actions-table tr:nth-child(even) td { background: #f9faf9; }
+.tag {
+display: inline-block; border-radius: 10px;
+padding: 2px 8px; font-size: 10px; font-weight: 600;
+}
+.tag-red { background: #fde8e8; color: #c0392b; }
+.tag-amber { background: #fff3cd; color: #a05a00; }
+.tag-green { background: #d4edda; color: #1b4332; }
+
+/* daisy CTA */
+.daisy-cta {
+background: linear-gradient(135deg, #1b4332, #2d6a4f);
+border-radius: 10px;
+padding: 20px 24px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 22px;
+}
+.daisy-left .daisy-title { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.daisy-left .daisy-sub { color: rgba(255,255,255,0.7); font-size: 11.5px; }
+.daisy-btn {
+background: #fff;
+color: #1b4332;
+border-radius: 6px;
+padding: 9px 20px;
+font-size: 12px;
+font-weight: 700;
+cursor: pointer;
+white-space: nowrap;
+flex-shrink: 0;
+border: none;
+}
+
+/* footer */
+.email-footer {
+background: #f8f8f8;
+border-top: 1px solid #eee;
+padding: 16px 32px;
+font-size: 10.5px;
+color: #aaa;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.footer-logo { font-weight: 800; color: #2d6a4f; font-size: 12px; }
+.footer-links { display: flex; gap: 14px; }
+.footer-links a { color: #aaa; text-decoration: none; }
+
+/* divider */
+.divider { height: 1px; background: #eee; margin: 20px 0; }
+</style>
+
+<div class="reading-pane">
+<div class="email-outer">
+
+<!-- Email meta -->
+<div class="email-meta">
+<div class="email-subject-line">📊 Monthly Performance Report –  @{formatDateTime(addToTime(utcNow(), -1, 'Month'), 'MMMM')}</div>
+<!-- <div class="email-from-row">
+<div class="avatar-ai">AI</div>
+<div class="from-details">
+<div><strong>GC Performance AI</strong> &lt;noreply-ai@ground-control.co.uk&gt;</div>
+<div>To: <strong>Thomas Kim</strong> &lt;thomas.kim@ground-control.co.uk&gt;</div>
+<div class="timestamp">Monday 24 March 2026 · 08:02</div>
+</div>
+<div class="email-actions">
+<button class="action-btn">↩ Reply</button>
+<button class="action-btn">→ Forward</button>
+<button class="action-btn">⋯</button>
+</div>
+</div>
+</div> -->
+
+<!-- Banner -->
+<div class="email-banner">
+<div class="banner-logo">
+<!-- Ground Control text logo in GC style -->
+<img src="https://github.com/DevHaydon/GC_Repo/blob/main/Portal/groundcontrol_white_rgb.png?raw=true" width="140" height="60" alt="Ground Control" style="display:block; border:0; outline:none; margin-right: 10px">
+<div>
+<div class="logo-text">OpsLens</div>
+<div class="logo-sub">Performance Intelligence</div>
+</div>
+</div>
+<div class="banner-badge">
+<div class="pulse"></div>
+AI-Generated · Auto-delivered
+</div>
+</div>
+
+<!-- Body -->
+<div class="email-body">
+
+<p class="greeting">
+Good morning, @{items('Apply_to_each_1')?['name']} <strong></strong>. Here is your automated performance summary for the month of <strong>@{formatDateTime(addToTime(utcNow(), -1, 'Month'), 'MMMM')}</strong>. Three areas require your attention this month — please review the suggested actions below and confirm or edit them before they are passed to <strong>DAISY</strong>.
+</p>
+
+
+<!-- KPI Grid -->
+<div class="section-label">Performance Metrics</div>
+<div class="kpi-grid">
+
+<!-- Reliability -->
+<div class="kpi-card green">
+<div class="kpi-name">Reliability</div>
+<div class="kpi-row">
+<div class="kpi-block">
+<div class="kpi-label">Current MTD</div>
+<div class="kpi-value good">@{formatNumber(
+  mul(
+    float(
+      first(skip(body('Parse_KPI_JSON'), 1))?['[gmo___Reliability_Visits]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 98.0%</div>
+</div>
+<div class="kpi-block">
+<div class="kpi-label">Fiscal YTD</div>
+<div class="kpi-value good">@{formatNumber(
+  mul(
+    float(
+      first(body('Parse_KPI_JSON'))?['[gmo___Reliability_Visits]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 98.0%</div>
+</div>
+<div>
+<div style="@{first(body('Parse_WoW_JSON'))?['[Reliability_col]']}"> @{formatNumber(
+  mul(
+    float(first(body('Parse_WoW_JSON'))?['[gmo___Reliability_Visits]']),
+    100
+  ),
+  '0.0'
+)
+}pp MoM</div>
+</div>
+</div>
+<div class="kpi-bar-wrap"><div class="kpi-bar amber" style="width:99.4%"></div></div>
+</div>
+
+<!-- Punctuality -->
+<div class="kpi-card amber">
+<div class="kpi-name">Punctuality</div>
+<div class="kpi-row">
+<div class="kpi-block">
+<div class="kpi-label">Current MTD</div>
+<div class="kpi-value warn">@{formatNumber(
+  mul(
+    float(
+      first(skip(body('Parse_KPI_JSON'), 1))?['[gmo___Punctuality_Visits]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 90.0%</div>
+</div>
+<div class="kpi-block">
+<div class="kpi-label">Fiscal YTD</div>
+<div class="kpi-value good">@{formatNumber(
+  mul(
+    float(
+      first(body('Parse_KPI_JSON'))?['[gmo___Punctuality_Visits]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 90.0%</div>
+</div>
+<div>
+<div style="@{first(body('Parse_WoW_JSON'))?['[Punctuality_col]']}">@{formatNumber(
+  mul(
+    float(first(body('Parse_WoW_JSON'))?['[gmo___Punctuality_Visits]']),
+    100
+  ),
+  '0.0'
+)
+}pp MoM</div>
+</div>
+</div>
+<div class="kpi-bar-wrap"><div class="kpi-bar amber" style="width:87.2%"></div></div>
+</div>
+
+<!-- Hubscape Usage -->
+<div class="kpi-card green">
+<div class="kpi-name">Hubscape Usage</div>
+<div class="kpi-row">
+<div class="kpi-block">
+<div class="kpi-label">Current MTD</div>
+<div class="kpi-value good">@{formatNumber(
+  mul(
+    float(
+      first(skip(body('Parse_KPI_JSON'), 1))?['[gmo___Completed_Visits_via_Hubscape]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 98.0%</div>
+</div>
+<div class="kpi-block">
+<div class="kpi-label">Fiscal YTD</div>
+<div class="kpi-value good">@{formatNumber(
+  mul(
+    float(
+      first(body('Parse_KPI_JSON'))?['[gmo___Completed_Visits_via_Hubscape]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 98.0%</div>
+</div>
+<div>
+<div style="@{first(body('Parse_WoW_JSON'))?['[hubscape_col]']}">@{
+
+formatNumber(
+    mul(
+        float(
+            first(
+                body('Parse_WoW_JSON')
+            )?['[gmo___Completed_Visits_via_Hubscape]']
+        ),
+        100
+    ),
+    '0.0'
+)} pp MoM</div>
+</div>
+</div>
+<div class="kpi-bar-wrap"><div class="kpi-bar amber" style="width:96.1%"></div></div>
+</div>
+
+<!-- Scheduled On Time -->
+<div class="kpi-card red">
+<div class="kpi-name">Scheduled On Time</div>
+<div class="kpi-row">
+<div class="kpi-block">
+<div class="kpi-label">Current MTD</div>
+<div class="kpi-value bad">@{formatNumber(
+  mul(
+    float(
+      first(skip(body('Parse_KPI_JSON'), 1))?['[gmo_Team_Scheduling_Timeliness]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 90.0%</div>
+</div>
+<div class="kpi-block">
+<div class="kpi-label">Fiscal YTD</div>
+<div class="kpi-value warn">@{formatNumber(
+  mul(
+    float(
+      first(body('Parse_KPI_JSON'))?['[gmo_Team_Scheduling_Timeliness]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 90.0%</div>
+</div>
+<div>
+<div style="@{first(body('Parse_WoW_JSON'))?['[Scheduling_timliness_col]']}">@{
+formatNumber(
+    mul(
+        float(
+            first(
+                body('Parse_WoW_JSON')
+            )?['[gmo_Team_Scheduling_Timeliness]']
+        ),
+        100
+    ),
+    '0.0'
+)} pp MoM</div>
+</div>
+</div>
+<div class="kpi-bar-wrap"><div class="kpi-bar red" style="width:84.5%"></div></div>
+</div>
+
+<!-- Visit Data Quality – full width -->
+<div class="kpi-card green" style="grid-column: span 2;">
+<div class="kpi-name">Visit Data Quality</div>
+<div class="kpi-row">
+<div class="kpi-block">
+<div class="kpi-label">Current MTD</div>
+<div class="kpi-value good">@{formatNumber(
+  mul(
+    float(
+      first(skip(body('Parse_KPI_JSON'), 1))?['[gmo_Completed_Visits_Without_Image__Operative__GPS__Start_and_End_Date_Warnings__BW___]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 98.0%</div>
+</div>
+<div class="kpi-block">
+<div class="kpi-label">Fiscal YTD</div>
+<div class="kpi-value good">@{formatNumber(
+  mul(
+    float(
+      first(body('Parse_KPI_JSON'))?['[gmo_Completed_Visits_Without_Image__Operative__GPS__Start_and_End_Date_Warnings__BW___]']
+    ),
+    100
+  ),
+  '0.0'
+)}%</div>
+<div class="kpi-sla">SLA ≥ 98.0%</div>
+</div>
+<div style="margin-left:auto; display:flex; align-items:center;">
+<div style="@{first(body('Parse_WoW_JSON'))?['[dataquality_col]']}">@{formatNumber(
+    mul(
+        float(
+            first(
+                body('Parse_WoW_JSON')
+            )?['[gmo_Completed_Visits_Without_Image__Operative__GPS__Start_and_End_Date_Warnings__BW___]']
+        ),
+        100
+    ),
+    '0.0'
+)}pp MoM</div>
+
+</div>
+</div>
+<div class="kpi-bar-wrap" style="margin-top:10px;"><div class="kpi-bar green" style="width:98.9%"></div></div>
+</div>
+
+</div>
+
+<!-- Key Highlights -->
+
+
+@{variables('html_boxes')}
+
+</div>
+
+<!-- DAISY CTA -->
+<div class="daisy-cta">
+<div class="daisy-left">
+<div class="daisy-title">✅ Accept actions → Send to DAISY</div>
+<div class="daisy-sub">Actions will be logged in DAISY with due dates and ownership assigned to you. Your ROD will be notified automatically.</div>
+</div>
+<button class="daisy-btn">(*COMING SOON*) Open in DAISY →</button>
+</div>
+
+<div class="divider"></div>
+<p style="font-size:11px; color:#aaa; line-height:1.7;">
+This report was generated automatically by the Ground Control Performance Intelligence system using data from <strong>Information Centre</strong>. Metrics reflect the period 17–23 March 2026. For questions about this report contact <a href="mailto:bi@ground-control.co.uk" style="color:#2d6a4f;">bi@ground-control.co.uk</a>. Actions accepted via this email will appear in your DAISY task list within 5 minutes.
+<br><br>
+<em>[1] Data sourced from internal reporting systems. SLA thresholds as defined in trading unit agreements.</em>
+</p>
+
+</div><!-- /email-body -->
+
+<!-- Footer -->
+<div class="email-footer">
+<div>
+<div class="footer-logo">Ground Control</div>
+<div style="margin-top:3px;">Human Nature at its Best — Performance Intelligence</div>
+</div>
+<div class="footer-links">
+<a href="#">View in browser</a>
+<a href="#">Dashboard</a>
+<a href="#">Unsubscribe</a>
+</div>
+</div>
+
+</div><!-- /email-outer -->
+</div>
